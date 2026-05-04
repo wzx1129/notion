@@ -10,7 +10,7 @@ import { useGlobal } from '@/lib/global'
 import { isBrowser } from '@/lib/utils'
 import { Transition } from '@headlessui/react'
 import { useRouter } from 'next/router'
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import BlogListArchive from './components/BlogListArchive'
 import { BlogPostCard } from './components/BlogPostCard'
 import { BlogListPage } from './components/BlogListPage'
@@ -29,7 +29,7 @@ import FloatingControls from './components/FloatingControls'
 import useViewportScale from './components/useViewportScale'
 import CONFIG from './config'
 import { Style } from './style'
-import { IconChevronUp, IconFolder, IconTag, IconLoader2 } from '@tabler/icons-react'
+import { IconLoader2 } from '@tabler/icons-react'
 
 /**
  * Endspace Theme - Endfield Style
@@ -55,6 +55,16 @@ const LayoutBase = (props) => {
   // Viewport scale - Endfield style (using hook default params: 1920x1080 landscape / 390x844 portrait)
   useViewportScale()
 
+  const nestHostRef = useRef(null)
+  useEffect(() => {
+    const el = nestHostRef.current
+    if (!el || !siteConfig('NEST')) return
+    el.setAttribute('zIndex', '-1')
+    el.setAttribute('opacity', '0.5')
+    el.setAttribute('color', '100,100,100')
+    el.setAttribute('count', '99')
+  }, [])
+
   return (
     <div
       id="theme-endspace"
@@ -62,23 +72,20 @@ const LayoutBase = (props) => {
     >
       <Style />
 
-      {/* Nest Animation Support - Container for nest.js canvas */}
+      {/* Nest: mount point for public/js/nest.js (reads zIndex/opacity/color/count attributes) */}
       {siteConfig('NEST') && (
-        <div 
-          id="__nest" 
-          zindex="-1"
-          opacity="0.5"
-          color="100,100,100"
-          count="99"
-          style={{ 
-            position: 'fixed', 
-            top: 0, 
-            left: 0, 
-            width: '100vw', 
-            height: '100vh', 
+        <div
+          ref={nestHostRef}
+          id="__nest"
+          style={{
+            position: 'fixed',
+            top: 0,
+            left: 0,
+            width: '100vw',
+            height: '100vh',
             pointerEvents: 'none',
-            zIndex: 0 
-          }} 
+            zIndex: 0
+          }}
         />
       )}
 
@@ -218,10 +225,10 @@ const LayoutSlug = (props) => {
                 <NotionPage post={post} />
               </div>
 
-              {/* Footer of the card - Share Bar */}
-              {siteConfig('POST_SHARE_BAR_ENABLE') === 'true' && (
+              {/* Footer of the card - Share Bar（与 siteConfig 布尔/字符串兼容） */}
+              {Boolean(siteConfig('POST_SHARE_BAR_ENABLE')) && (
                 <div className="mt-12 pt-8 border-t border-[var(--endspace-border-base)] flex justify-end items-center">
-                   <ShareBar post={post} />
+                  <ShareBar post={post} />
                 </div>
               )}
             </div>
