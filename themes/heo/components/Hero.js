@@ -362,7 +362,7 @@ function TodayCard({ cRef, siteInfo }) {
   if (!coverEnable) {
     return null
   }
-  
+
   return (
     <div
       id='today-card'
