@@ -20,14 +20,16 @@ describe('formatDate', () => {
       month: 'short',
       day: 'numeric'
     })
+    spy.mockRestore()
   })
 
   it('keeps non-zh locale output unchanged', () => {
-    jest
+    const spy = jest
       .spyOn(Date.prototype, 'toLocaleDateString')
       .mockReturnValue('May 20, 2024')
 
     expect(formatDate('2024-05-20', 'en-US')).toBe('May 20, 2024')
+    spy.mockRestore()
   })
 })
 
