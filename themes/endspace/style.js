@@ -155,12 +155,7 @@ export const Style = () => {
 
       .archive-section-title {
         color: #000;
-        font-size: clamp(2.75rem, 6vw, 5rem);
-        font-weight: 900;
-        line-height: 1;
-        letter-spacing: -0.03em;
         margin-bottom: 1.5rem;
-        text-transform: uppercase;
       }
 
       .dark .archive-section-title {
@@ -905,20 +900,17 @@ export const Style = () => {
         color: #ffffff !important;
       }
 
-      #archive-category-list .ef-btn:hover,
-      #archive-tags-list .ef-btn:hover {
+      .archive-filter-btn:hover {
         background-color: #FBFB46 !important;
         border-color: #FBFB46;
         box-shadow: var(--endspace-shadow-hover);
       }
 
-      #archive-category-list .ef-btn:hover .ef-btn-indicator,
-      #archive-tags-list .ef-btn:hover .ef-btn-indicator {
+      .archive-filter-btn:hover .ef-btn-indicator {
         background-color: #000;
       }
 
-      #archive-category-list .ef-btn:hover .ef-btn-text,
-      #archive-tags-list .ef-btn:hover .ef-btn-text {
+      .archive-filter-btn:hover .ef-btn-text {
         color: #000 !important;
       }
     `}</style>

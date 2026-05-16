@@ -29,7 +29,7 @@ import useViewportScale from './components/useViewportScale'
 import replaceEndspaceSearchResult from './components/searchHighlight'
 import CONFIG from './config'
 import { Style } from './style'
-import { IconLoader2 } from '@tabler/icons-react'
+import { IconLoader2, IconSearch } from '@tabler/icons-react'
 
 /**
  * Endspace Theme - Endfield Style
@@ -368,7 +368,10 @@ const LayoutArchive = (props) => {
         </section>
 
         <section className="archive-section">
-          <h2 className="archive-section-title">CATEGORIES</h2>
+          <div className="archive-section-title flex items-center gap-2 text-black tech-text tracking-wider">
+            <IconSearch size={24} stroke={1.5} />
+            <span className="text-5xl font-black">CATEGORIES</span>
+          </div>
           <div id="archive-category-list" className="flex flex-wrap gap-3">
             {categoryOptions?.map((category) => (
               <SmartLink
@@ -377,7 +380,7 @@ const LayoutArchive = (props) => {
                 passHref
                 legacyBehavior
               >
-                <a className="ef-btn group">
+                <a className="ef-btn archive-filter-btn group">
                   <span className="ef-btn-indicator"></span>
                   <span className="ef-btn-text">
                     {category.name}
@@ -390,7 +393,10 @@ const LayoutArchive = (props) => {
         </section>
 
         <section className="archive-section">
-          <h2 className="archive-section-title">TAGS</h2>
+          <div className="archive-section-title flex items-center gap-2 text-black tech-text tracking-wider">
+            <IconSearch size={24} stroke={1.5} />
+            <span className="text-5xl font-black">TAGS</span>
+          </div>
           <div id="archive-tags-list" className="flex flex-wrap gap-3">
             {tagOptions.map((tag) => (
               <SmartLink
@@ -399,7 +405,7 @@ const LayoutArchive = (props) => {
                 passHref
                 legacyBehavior
               >
-                <a className="ef-btn group">
+                <a className="ef-btn archive-filter-btn group">
                   <span className="ef-btn-indicator"></span>
                   <span className="ef-btn-text">
                     #{tag.name}
