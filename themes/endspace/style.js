@@ -153,35 +153,18 @@ export const Style = () => {
         position: relative;
       }
 
-      .archive-section-header {
-        display: flex;
-        align-items: flex-end;
-        gap: 1rem;
-        justify-content: space-between;
-        margin-bottom: 1.5rem;
-        padding-bottom: 0.75rem;
-        border-bottom: 1px solid var(--endspace-border-base);
-      }
-
-      .archive-section-kicker {
-        color: var(--endspace-text-muted);
-        font-size: 0.65rem;
-        margin-bottom: 0.25rem;
-      }
-
       .archive-section-title {
-        color: var(--endspace-text-primary);
-        font-size: clamp(2rem, 5vw, 4.5rem);
+        color: #000;
+        font-size: clamp(2.75rem, 6vw, 5rem);
         font-weight: 900;
-        line-height: 0.9;
-        letter-spacing: -0.04em;
+        line-height: 1;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+        text-transform: uppercase;
       }
 
-      .archive-section-status {
-        color: var(--endspace-text-muted);
-        font-size: 0.75rem;
-        white-space: nowrap;
-        margin-bottom: 0.35rem;
+      .dark .archive-section-title {
+        color: var(--endspace-text-primary);
       }
 
       /* ============================================
@@ -920,6 +903,23 @@ export const Style = () => {
       
       .ef-btn:hover .ef-btn-text {
         color: #ffffff !important;
+      }
+
+      #archive-category-list .ef-btn:hover,
+      #archive-tags-list .ef-btn:hover {
+        background-color: #FBFB46 !important;
+        border-color: #FBFB46;
+        box-shadow: var(--endspace-shadow-hover);
+      }
+
+      #archive-category-list .ef-btn:hover .ef-btn-indicator,
+      #archive-tags-list .ef-btn:hover .ef-btn-indicator {
+        background-color: #000;
+      }
+
+      #archive-category-list .ef-btn:hover .ef-btn-text,
+      #archive-tags-list .ef-btn:hover .ef-btn-text {
+        color: #000 !important;
       }
     `}</style>
   )
