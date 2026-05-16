@@ -154,12 +154,10 @@ export const Style = () => {
       }
 
       .endspace-section-title {
-        color: #000;
+        color: var(--endspace-text-muted);
         margin-bottom: 1.5rem;
-      }
-
-      .dark .endspace-section-title {
-        color: var(--endspace-text-primary);
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--endspace-border-base);
       }
 
       /* ============================================

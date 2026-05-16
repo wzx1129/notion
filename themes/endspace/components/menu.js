@@ -33,7 +33,8 @@ const normalizeMenuItem = (link, index) => {
     name,
     path,
     href: path,
-    icon: link.icon || IconNames[name] || IconNames[name?.trim?.()] || 'Default'
+    icon: IconNames[name] || IconNames[name?.trim?.()] || 'Default',
+    customIcon: link.icon || null
   }
 }
 

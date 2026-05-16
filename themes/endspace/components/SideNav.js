@@ -133,7 +133,15 @@ export const SideNav = (props) => {
   }, [activeTab])
 
   // Render icon component
-  const renderIcon = (name, isActive) => {
+  const renderIcon = (item, isActive) => {
+    if (item.customIcon) {
+      return (
+        <i
+          className={`${item.customIcon} text-[1.1rem] transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
+        />
+      )
+    }
+    const name = item.icon || item.name
     const IconComponent = IconComponents[name] || IconComponents.Default
     if (!IconComponent) return null
     return (
@@ -207,7 +215,7 @@ export const SideNav = (props) => {
               >
                 {/* Icon Container */}
                 <div className="w-[5rem] flex-shrink-0 flex items-center justify-center z-10">
-                  {renderIcon(item.icon || item.name, isActive)}
+                  {renderIcon(item, isActive)}
                 </div>
 
                 {/* Text Label (Reveal on Hover) */}

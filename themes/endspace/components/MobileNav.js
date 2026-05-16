@@ -111,7 +111,11 @@ export const MobileNav = (props) => {
   }, [isMenuOpen])
 
   // Render icon component
-  const renderIcon = (name) => {
+  const renderIcon = (item) => {
+    if (item.customIcon) {
+      return <i className={`${item.customIcon} w-6 text-center`} />
+    }
+    const name = item.icon || item.name
     const IconComponent = IconComponents[name] || IconComponents.Default
     if (!IconComponent) return null
     return <IconComponent size={20} className="w-6 text-center" />
@@ -187,7 +191,7 @@ export const MobileNav = (props) => {
               }`}
             >
               <div className={`transition-colors ${activeTab === item.name ? 'text-black' : 'text-gray-400 group-hover:text-black'}`}>
-                 {renderIcon(item.icon || item.name)}
+                 {renderIcon(item)}
               </div>
               <span className="text-xl font-medium">{item.name}</span>
             </SmartLink>
