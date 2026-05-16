@@ -1,25 +1,14 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import { siteConfig } from '@/lib/config'
 import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
 import { useGlobal } from '@/lib/global'
-import CONFIG from '../config'
 import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
 import {
   IconMenu2,
   IconX,
-  IconBrandX,
-  IconBrandGithub,
-  IconBrandTwitter,
-  IconBrandWeibo,
-  IconBrandBilibili,
-  IconBrandTelegram,
-  IconBrandInstagram,
-  IconBrandYoutube,
-  IconBrandLinkedin,
-  IconBrandWechat,
-  IconPlanet
+  IconBrandX
 } from '@tabler/icons-react'
 // Conceptual Navigation Icons (Solid, Angular)
 import AppsFillIcon from 'remixicon-react/AppsFillIcon'
@@ -29,9 +18,10 @@ import StackFillIcon from 'remixicon-react/StackFillIcon'
 import Compass3FillIcon from 'remixicon-react/Compass3FillIcon'
 import EarthFillIcon from 'remixicon-react/EarthFillIcon'
 import ProfileFillIcon from 'remixicon-react/ProfileFillIcon'
+import LinkFillIcon from 'remixicon-react/LinkFillIcon'
+import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 // Social Icons (Solid)
 import GithubFillIcon from 'remixicon-react/GithubFillIcon'
-import TwitterFillIcon from 'remixicon-react/TwitterFillIcon'
 import WeiboFillIcon from 'remixicon-react/WeiboFillIcon'
 import BilibiliFillIcon from 'remixicon-react/BilibiliFillIcon'
 import TelegramFillIcon from 'remixicon-react/TelegramFillIcon'
@@ -50,7 +40,8 @@ const IconComponents = {
   'Archive': StackFillIcon,
   'Search': Compass3FillIcon,
   'Friends': EarthFillIcon,
-  'Portfolio': ProfileFillIcon
+  'Portfolio': ProfileFillIcon,
+  'Default': LinkFillIcon
 }
 
 // Social icon mapping
@@ -77,16 +68,10 @@ export const MobileNav = (props) => {
   // Get avatar from props or global context
   const avatarUrl = props?.siteInfo?.icon || siteInfo?.icon || siteConfig('AVATAR')
 
-  // All navigation items
-  const menuItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Category', path: '/category', show: siteConfig('ENDSPACE_MENU_CATEGORY', null, CONFIG) },
-    { name: 'Tag', path: '/tag', show: siteConfig('ENDSPACE_MENU_TAG', null, CONFIG) },
-    { name: 'Archive', path: '/archive', show: siteConfig('ENDSPACE_MENU_ARCHIVE', null, CONFIG) },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Friends', path: '/friends' },
-    { name: 'Search', path: '/search', show: siteConfig('ENDSPACE_MENU_SEARCH', null, CONFIG) }
-  ].filter(item => item.show !== false)
+  const menuItems = useMemo(
+    () => getEndspaceMenuItems(props),
+    [props.customMenu, props.customNav]
+  )
 
   // Social icon config - using contact.config.js settings
   const socialLinks = [
@@ -106,15 +91,8 @@ export const MobileNav = (props) => {
   const CONTACT_EMAIL = siteConfig('CONTACT_EMAIL')
 
   useEffect(() => {
-    const path = router.asPath
-    if (path === '/') setActiveTab('Home')
-    else if (path.includes('/category')) setActiveTab('Category')
-    else if (path.includes('/tag')) setActiveTab('Tag')
-    else if (path.includes('/archive')) setActiveTab('Archive')
-    else if (path.includes('/search')) setActiveTab('Search')
-    else if (path.includes('/friends')) setActiveTab('Friends')
-    else if (path.includes('/portfolio')) setActiveTab('Portfolio')
-  }, [router.asPath])
+    setActiveTab(getEndspaceActiveMenuName(menuItems, router.asPath))
+  }, [router.asPath, menuItems])
 
   // Close menu when route changes
   useEffect(() => {
@@ -135,7 +113,7 @@ export const MobileNav = (props) => {
 
   // Render icon component
   const renderIcon = (name) => {
-    const IconComponent = IconComponents[name]
+    const IconComponent = IconComponents[name] || IconComponents.Default
     if (!IconComponent) return null
     return <IconComponent size={20} className="w-6 text-center" />
   }
@@ -201,7 +179,7 @@ export const MobileNav = (props) => {
         <div className="flex flex-col items-start p-6 space-y-2">
           {menuItems.map(item => (
             <SmartLink
-              key={item.name}
+              key={item.id || item.name}
               href={item.path}
               className={`flex items-center gap-4 py-3 w-full transition-all group ${
                 activeTab === item.name
@@ -210,7 +188,7 @@ export const MobileNav = (props) => {
               }`}
             >
               <div className={`transition-colors ${activeTab === item.name ? 'text-black' : 'text-gray-400 group-hover:text-black'}`}>
-                 {renderIcon(item.name)}
+                 {renderIcon(item.icon || item.name)}
               </div>
               <span className="text-xl font-medium">{item.name}</span>
             </SmartLink>

@@ -136,6 +136,19 @@ export const Style = () => {
         letter-spacing: 1px;
       }
 
+      .endspace-search-highlight {
+        color: #a16207;
+        background: linear-gradient(90deg, rgba(251, 251, 69, 0.2), rgba(251, 191, 36, 0.35));
+        padding: 0 0.25rem;
+        box-decoration-break: clone;
+        -webkit-box-decoration-break: clone;
+      }
+
+      .dark .endspace-search-highlight {
+        color: var(--endspace-accent-yellow);
+        background: rgba(251, 251, 69, 0.18);
+      }
+
       /* ============================================
          "Float" Container Styles (Glassmorphism -> Solid Block)
          ============================================ */

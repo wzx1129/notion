@@ -1,7 +1,6 @@
 'use client'
 
 import Comment from '@/components/Comment'
-import replaceSearchResult from '@/components/Mark'
 import NotionPage from '@/components/NotionPage'
 import ShareBar from '@/components/ShareBar'
 import SmartLink from '@/components/SmartLink'
@@ -27,6 +26,7 @@ import MobileNav from './components/MobileNav'
 import ArticleAdjacent from './components/ArticleAdjacent'
 import FloatingControls from './components/FloatingControls'
 import useViewportScale from './components/useViewportScale'
+import replaceEndspaceSearchResult from './components/searchHighlight'
 import CONFIG from './config'
 import { Style } from './style'
 import { IconLoader2 } from '@tabler/icons-react'
@@ -317,24 +317,23 @@ const Layout404 = (props) => {
  */
 const LayoutSearch = (props) => {
   const { keyword, posts = [] } = props
-  const router = useRouter()
 
   useEffect(() => {
     if (isBrowser) {
       // Highlight search results
       const container = document.getElementById('posts-wrapper')
-      if (keyword && container) {
-        replaceSearchResult({
+      if (container) {
+        replaceEndspaceSearchResult({
           doms: container,
           search: keyword,
           target: {
             element: 'span',
-            className: 'text-yellow-400 bg-yellow-400/20 px-1'
+            className: 'endspace-search-highlight'
           }
         })
       }
     }
-  }, [router])
+  }, [keyword, posts])
 
   return (
     <>

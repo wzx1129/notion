@@ -1,35 +1,24 @@
 import { useRouter } from 'next/router'
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useMemo, useRef } from 'react'
 import { siteConfig } from '@/lib/config'
 import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
 import { useGlobal } from '@/lib/global'
-import CONFIG from '../config'
 import SmartLink from '@/components/SmartLink'
 import { EndspacePlayer } from './EndspacePlayer'
 import {
-  IconBrandGithub,
-  IconBrandTwitter,
-  IconBrandWeibo,
-  IconBrandBilibili,
-  IconBrandTelegram,
-  IconBrandInstagram,
-  IconBrandYoutube,
-  IconBrandLinkedin,
-  IconBrandWechat,
-  IconBrandX,
-  IconPlanet
+  IconBrandX
 } from '@tabler/icons-react'
 import RadarFillIcon from 'remixicon-react/RadarFillIcon'
-import MailSendFillIcon from 'remixicon-react/MailSendFillIcon'
 // Conceptual Navigation Icons (Solid, Angular)
 import AppsFillIcon from 'remixicon-react/AppsFillIcon'
 import FolderFillIcon from 'remixicon-react/FolderFillIcon'
-import BookMarkFillIcon from 'remixicon-react/BookMarkFillIcon'
 import BarcodeFillIcon from 'remixicon-react/BarcodeFillIcon'
 import StackFillIcon from 'remixicon-react/StackFillIcon'
 import Compass3FillIcon from 'remixicon-react/Compass3FillIcon'
 import EarthFillIcon from 'remixicon-react/EarthFillIcon'
 import ProfileFillIcon from 'remixicon-react/ProfileFillIcon'
+import LinkFillIcon from 'remixicon-react/LinkFillIcon'
+import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 
   // Social Icons (Solid)
 import GithubFillIcon from 'remixicon-react/GithubFillIcon'
@@ -51,7 +40,8 @@ const IconComponents = {
   'Archive': StackFillIcon,
   'Search': Compass3FillIcon,
   'Friends': EarthFillIcon,
-  'Portfolio': ProfileFillIcon
+  'Portfolio': ProfileFillIcon,
+  'Default': LinkFillIcon
 }
 
 // Social icon mapping
@@ -81,16 +71,10 @@ export const SideNav = (props) => {
   // Get avatar from props or global context (Hexo way uses props)
   const avatarUrl = props?.siteInfo?.icon || siteInfo?.icon || siteConfig('AVATAR')
 
-  // All navigation items
-  const menuItems = [
-    { name: 'Home', path: '/' },
-    { name: 'Category', path: '/category', show: siteConfig('ENDSPACE_MENU_CATEGORY', null, CONFIG) },
-    { name: 'Tag', path: '/tag', show: siteConfig('ENDSPACE_MENU_TAG', null, CONFIG) },
-    { name: 'Archive', path: '/archive', show: siteConfig('ENDSPACE_MENU_ARCHIVE', null, CONFIG) },
-    { name: 'Portfolio', path: '/portfolio' },
-    { name: 'Friends', path: '/friends' },
-    { name: 'Search', path: '/search', show: siteConfig('ENDSPACE_MENU_SEARCH', null, CONFIG) }
-  ].filter(item => item.show !== false)
+  const menuItems = useMemo(
+    () => getEndspaceMenuItems(props),
+    [props.customMenu, props.customNav]
+  )
 
   // Social icon config - using contact.config.js settings
   const socialLinks = [
@@ -128,19 +112,8 @@ export const SideNav = (props) => {
   }
 
   useEffect(() => {
-    // Set active tab based on path
-    const path = router.asPath
-    let newTab = 'Home'
-    if (path === '/') newTab = 'Home'
-    else if (path.includes('/category')) newTab = 'Category'
-    else if (path.includes('/tag')) newTab = 'Tag'
-    else if (path.includes('/archive')) newTab = 'Archive'
-    else if (path.includes('/search')) newTab = 'Search'
-    else if (path.includes('/friends')) newTab = 'Friends'
-    else if (path.includes('/portfolio')) newTab = 'Portfolio'
-    
-    setActiveTab(newTab)
-  }, [router.asPath])
+    setActiveTab(getEndspaceActiveMenuName(menuItems, router.asPath))
+  }, [router.asPath, menuItems])
 
   // Update indicator position when activeTab changes
   useEffect(() => {
@@ -162,7 +135,7 @@ export const SideNav = (props) => {
 
   // Render icon component
   const renderIcon = (name, isActive) => {
-    const IconComponent = IconComponents[name]
+    const IconComponent = IconComponents[name] || IconComponents.Default
     if (!IconComponent) return null
     return (
       <IconComponent 
@@ -228,14 +201,14 @@ export const SideNav = (props) => {
         {menuItems.map((item) => {
           const isActive = activeTab === item.name
           return (
-            <SmartLink key={item.name} href={item.path}>
+            <SmartLink key={item.id || item.name} href={item.path}>
               <div 
                 ref={el => itemRefs.current[item.name] = el}
                 className={`nier-nav-item relative h-[3rem] flex items-center cursor-pointer group transition-colors duration-300 hover:bg-[#d4d4d8] ${isActive ? 'active bg-[#d4d4d8]' : ''}`}
               >
                 {/* Icon Container */}
                 <div className="w-[5rem] flex-shrink-0 flex items-center justify-center z-10">
-                  {renderIcon(item.name, isActive)}
+                  {renderIcon(item.icon || item.name, isActive)}
                 </div>
 
                 {/* Text Label (Reveal on Hover) */}
