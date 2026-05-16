@@ -149,6 +149,41 @@ export const Style = () => {
         background: rgba(251, 251, 69, 0.18);
       }
 
+      .archive-section {
+        position: relative;
+      }
+
+      .archive-section-header {
+        display: flex;
+        align-items: flex-end;
+        gap: 1rem;
+        justify-content: space-between;
+        margin-bottom: 1.5rem;
+        padding-bottom: 0.75rem;
+        border-bottom: 1px solid var(--endspace-border-base);
+      }
+
+      .archive-section-kicker {
+        color: var(--endspace-text-muted);
+        font-size: 0.65rem;
+        margin-bottom: 0.25rem;
+      }
+
+      .archive-section-title {
+        color: var(--endspace-text-primary);
+        font-size: clamp(2rem, 5vw, 4.5rem);
+        font-weight: 900;
+        line-height: 0.9;
+        letter-spacing: -0.04em;
+      }
+
+      .archive-section-status {
+        color: var(--endspace-text-muted);
+        font-size: 0.75rem;
+        white-space: nowrap;
+        margin-bottom: 0.35rem;
+      }
+
       /* ============================================
          "Float" Container Styles (Glassmorphism -> Solid Block)
          ============================================ */

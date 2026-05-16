@@ -358,17 +358,96 @@ const LayoutSearch = (props) => {
  * @returns Articles grouped by date
  */
 const LayoutArchive = (props) => {
-  const { archivePosts } = props
+  const { archivePosts = {}, categoryOptions = [], tagOptions = [] } = props
+  const archiveTitles = Object.keys(archivePosts)
   return (
     <>
-      <div className="mb-10 pb-20 min-h-screen w-full">
-        {Object.keys(archivePosts).map((archiveTitle) => (
-          <BlogListArchive
-            key={archiveTitle}
-            archiveTitle={archiveTitle}
-            archivePosts={archivePosts}
-          />
-        ))}
+      <div className="mb-10 pb-20 min-h-screen w-full space-y-12">
+        <section className="archive-section">
+          <div className="archive-section-header">
+            <div>
+              <div className="archive-section-kicker tech-text">01_QUERY_INTERFACE</div>
+              <h2 className="archive-section-title">SEARCH</h2>
+            </div>
+            <div className="archive-section-status tech-text">STATUS: ONLINE</div>
+          </div>
+          <SearchInput {...props} />
+        </section>
+
+        <section className="archive-section">
+          <div className="archive-section-header">
+            <div>
+              <div className="archive-section-kicker tech-text">02_CLASSIFICATION</div>
+              <h2 className="archive-section-title">CATEGORIES</h2>
+            </div>
+            <div className="archive-section-status tech-text">
+              {categoryOptions.length}_NODES
+            </div>
+          </div>
+          <div id="archive-category-list" className="flex flex-wrap gap-3">
+            {categoryOptions?.map((category) => (
+              <SmartLink
+                key={category.name}
+                href={`/category/${category.name}`}
+                passHref
+                legacyBehavior
+              >
+                <a className="ef-btn group">
+                  <span className="ef-btn-indicator"></span>
+                  <span className="ef-btn-text">{category.name}</span>
+                </a>
+              </SmartLink>
+            ))}
+          </div>
+        </section>
+
+        <section className="archive-section">
+          <div className="archive-section-header">
+            <div>
+              <div className="archive-section-kicker tech-text">03_INDEX_TAGS</div>
+              <h2 className="archive-section-title">TAGS</h2>
+            </div>
+            <div className="archive-section-status tech-text">
+              {tagOptions.length}_MARKERS
+            </div>
+          </div>
+          <div id="archive-tags-list" className="flex flex-wrap gap-3">
+            {tagOptions.map((tag) => (
+              <SmartLink
+                key={tag.name}
+                href={`/tag/${encodeURIComponent(tag.name)}`}
+                passHref
+                legacyBehavior
+              >
+                <a className="ef-btn group">
+                  <span className="ef-btn-indicator"></span>
+                  <span className="ef-btn-text">#{tag.name}</span>
+                </a>
+              </SmartLink>
+            ))}
+          </div>
+        </section>
+
+        <section className="archive-section">
+          <div className="archive-section-header">
+            <div>
+              <div className="archive-section-kicker tech-text">04_TIME_SEQUENCE</div>
+              <h2 className="archive-section-title">ARCHIVES</h2>
+            </div>
+            <div className="archive-section-status tech-text">
+              {archiveTitles.length}_PERIODS
+            </div>
+          </div>
+          <div>
+            {archiveTitles.map((archiveTitle) => (
+              <BlogListArchive
+                key={archiveTitle}
+                archiveTitle={archiveTitle}
+                archivePosts={archivePosts}
+              />
+            ))}
+          </div>
+        </section>
       </div>
     </>
   )
