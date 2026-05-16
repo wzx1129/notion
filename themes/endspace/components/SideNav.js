@@ -17,7 +17,6 @@ import StackFillIcon from 'remixicon-react/StackFillIcon'
 import Compass3FillIcon from 'remixicon-react/Compass3FillIcon'
 import EarthFillIcon from 'remixicon-react/EarthFillIcon'
 import ProfileFillIcon from 'remixicon-react/ProfileFillIcon'
-import LinkFillIcon from 'remixicon-react/LinkFillIcon'
 import { getEndspaceActiveMenuName, getEndspaceMenuItems } from './menu'
 
   // Social Icons (Solid)
@@ -41,7 +40,7 @@ const IconComponents = {
   'Search': Compass3FillIcon,
   'Friends': EarthFillIcon,
   'Portfolio': ProfileFillIcon,
-  'Default': LinkFillIcon
+  'Default': AppsFillIcon
 }
 
 // Social icon mapping
