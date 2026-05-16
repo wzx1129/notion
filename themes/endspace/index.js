@@ -29,7 +29,7 @@ import useViewportScale from './components/useViewportScale'
 import replaceEndspaceSearchResult from './components/searchHighlight'
 import CONFIG from './config'
 import { Style } from './style'
-import { IconLoader2, IconSearch } from '@tabler/icons-react'
+import { IconLoader2 } from '@tabler/icons-react'
 
 /**
  * Endspace Theme - Endfield Style
@@ -364,12 +364,11 @@ const LayoutArchive = (props) => {
     <>
       <div className="mb-10 pb-20 min-h-screen w-full space-y-12">
         <section className="archive-section">
-          <SearchInput {...props} />
+          <SearchInput {...props} compact />
         </section>
 
         <section className="archive-section">
-          <div className="archive-section-title flex items-center gap-2 text-black tech-text tracking-wider">
-            <IconSearch size={24} stroke={1.5} />
+          <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
             <span className="text-5xl font-black">CATEGORIES</span>
           </div>
           <div id="archive-category-list" className="flex flex-wrap gap-3">
@@ -393,8 +392,7 @@ const LayoutArchive = (props) => {
         </section>
 
         <section className="archive-section">
-          <div className="archive-section-title flex items-center gap-2 text-black tech-text tracking-wider">
-            <IconSearch size={24} stroke={1.5} />
+          <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
             <span className="text-5xl font-black">TAGS</span>
           </div>
           <div id="archive-tags-list" className="flex flex-wrap gap-3">

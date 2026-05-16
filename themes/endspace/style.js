@@ -153,12 +153,12 @@ export const Style = () => {
         position: relative;
       }
 
-      .archive-section-title {
+      .endspace-section-title {
         color: #000;
         margin-bottom: 1.5rem;
       }
 
-      .dark .archive-section-title {
+      .dark .endspace-section-title {
         color: var(--endspace-text-primary);
       }
 

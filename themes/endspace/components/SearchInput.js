@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/router'
-import { IconSearch, IconX } from '@tabler/icons-react'
+import { IconX } from '@tabler/icons-react'
 
 /**
  * SearchInput Component - Refined Tech Interface
  * Search input component
  */
-export const SearchInput = ({ keyword = '', locale }) => {
+export const SearchInput = ({ keyword = '', locale, compact = false }) => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState(keyword || '')
   const [isFocused, setIsFocused] = useState(false)
@@ -27,11 +27,10 @@ export const SearchInput = ({ keyword = '', locale }) => {
   }
 
   return (
-    <div className={`endspace-frame p-6 transition-colors ${isFocused ? 'border-[var(--endspace-accent-yellow)]' : ''}`}>
+    <div className={`${compact ? '' : 'endspace-frame p-6'} transition-colors ${isFocused && !compact ? 'border-[var(--endspace-accent-yellow)]' : ''}`}>
       <form onSubmit={handleSearch} className="space-y-4">
         {/* Search Label */}
-        <div className="flex items-center gap-2 text-black tech-text tracking-wider">
-          <IconSearch size={24} stroke={1.5} />
+        <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
           <span className="text-5xl font-black">SEARCH</span>
         </div>
 
