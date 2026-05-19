@@ -198,7 +198,7 @@ export const MobileNav = (props) => {
                   : 'text-[var(--endspace-text-secondary)] hover:text-black'
               }`}
             >
-              <div className={`transition-colors ${activeTab === item.name ? 'text-black' : 'text-gray-400 group-hover:text-black'}`}>
+              <div className="text-black transition-colors">
                  {renderIcon(item)}
               </div>
               <span className="text-xl font-medium">{item.name}</span>

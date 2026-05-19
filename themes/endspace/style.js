@@ -119,10 +119,12 @@ export const Style = () => {
 
       .endspace-section-title {
         color: #E8E8EA;
+        width: 100%;
         gap: 1rem;
         margin-bottom: 1.5rem;
         padding-bottom: 0.75rem;
         border-bottom: 1px solid var(--endspace-border-base);
+        justify-content: flex-start;
       }
 
       .endspace-section-meta {
@@ -223,6 +225,43 @@ export const Style = () => {
         color: var(--endspace-text-primary);
         font-size: 1.05rem;
         line-height: 1.75;
+      }
+
+      #theme-endspace #article-wrapper,
+      #theme-endspace #notion-article,
+      #theme-endspace #notion-article .notion,
+      #theme-endspace #notion-article .notion-text,
+      #theme-endspace #notion-article .notion-page,
+      #theme-endspace #notion-article .notion-list,
+      #theme-endspace #notion-article .notion-quote,
+      #theme-endspace #notion-article .notion-callout,
+      #theme-endspace #notion-article .notion-bookmark,
+      #theme-endspace #notion-article .notion-collection,
+      #theme-endspace #notion-article .notion-collection-row,
+      #theme-endspace #notion-article .notion-property {
+        color: var(--endspace-text-primary) !important;
+      }
+
+      #theme-endspace #notion-article p,
+      #theme-endspace #notion-article li,
+      #theme-endspace #notion-article figcaption,
+      #theme-endspace #notion-article .notion-text,
+      #theme-endspace #notion-article .notion-list,
+      #theme-endspace #notion-article .notion-bookmark-description,
+      #theme-endspace #notion-article .notion-bookmark-link,
+      #theme-endspace #notion-article .notion-collection-row-body {
+        color: var(--endspace-text-secondary) !important;
+      }
+
+      #theme-endspace #notion-article h1,
+      #theme-endspace #notion-article h2,
+      #theme-endspace #notion-article h3,
+      #theme-endspace #notion-article h4,
+      #theme-endspace #notion-article h5,
+      #theme-endspace #notion-article h6,
+      #theme-endspace #notion-article strong,
+      #theme-endspace #notion-article .notion-bookmark-title {
+        color: var(--endspace-text-primary) !important;
       }
 
       /* Headers - NieR: Automata Style Dynamic Shadow */
