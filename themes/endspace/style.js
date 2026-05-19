@@ -44,37 +44,6 @@ export const Style = () => {
           0 0 0 1px var(--endspace-accent-yellow);
       }
 
-      /* Dark Mode Variables */
-      .dark {
-        --endspace-bg-base: #09090b;
-        --endspace-bg-primary: #18181b;
-        --endspace-bg-secondary: #27272a;
-        --endspace-bg-tertiary: #3f3f46;
-        
-        --endspace-text-primary: #fafafa;
-        --endspace-text-secondary: #a1a1aa;
-        --endspace-text-muted: #71717a;
-        
-        --endspace-accent-yellow: #FBFB45;
-        --endspace-accent-yellow-dim: rgba(251, 251, 69, 0.15);
-        --endspace-accent-cyan: #FBFB45; /* Dark Mode: Yellow 600 */
-        --endspace-accent-cyan-dim: rgba(251, 251, 69, 0.1);
-        
-        --endspace-border-base: #27272a;
-        --endspace-border-active: #FBFB45;
-        --endspace-grid-color: rgba(255,255,255,0.02);
-        
-        --endspace-shadow-base: 
-          0 1px 2px rgba(0, 0, 0, 0.2),
-          0 2px 4px rgba(0, 0, 0, 0.15),
-          0 4px 8px rgba(0, 0, 0, 0.1);
-        --endspace-shadow-hover: 
-          0 4px 8px rgba(0, 0, 0, 0.3),
-          0 8px 16px rgba(0, 0, 0, 0.25),
-          0 16px 32px rgba(0, 0, 0, 0.2),
-          0 0 0 1px var(--endspace-accent-yellow);
-      }
-
       /* ============================================
          Viewport Scaling (Responsive Font Size)
          ============================================ */
@@ -144,11 +113,6 @@ export const Style = () => {
         -webkit-box-decoration-break: clone;
       }
 
-      .dark .endspace-search-highlight {
-        color: var(--endspace-accent-yellow);
-        background: rgba(251, 251, 69, 0.18);
-      }
-
       .archive-section {
         position: relative;
       }
@@ -194,11 +158,6 @@ export const Style = () => {
            0 10px 30px -10px rgba(0,0,0,0.1),
            0 4px 6px -2px rgba(0,0,0,0.05); /* Enhanced shadow for lift */
         z-index: 10;
-      }
-
-      .dark .endspace-frame {
-        background: #18181b; /* Solid dark background */
-        border-color: #3f3f46;
       }
 
       /* Corner Markers (Minimalist L-shape) */
@@ -257,10 +216,6 @@ export const Style = () => {
         z-index: 20;
       }
       
-      .dark .endspace-card {
-         background: #18181b;
-      }
-
       /* ============================================
          Notion Content Overrides (Light Mode)
          ============================================ */
@@ -301,17 +256,6 @@ export const Style = () => {
           0 0 0 rgba(255, 50, 50, 0);
         opacity: 1;
         transform: translateX(2px); /* Slight physical shift on 'lock-on' */
-      }
-      
-      .dark #notion-article h1, .dark #notion-article h2, .dark #notion-article h3 {
-        /* Dark mode: Stronger, glow-like ghosts */
-        text-shadow: 
-          -4px -2px 0 rgba(98, 240, 245, 0.5),
-          4px 2px 0 rgba(255, 50, 50, 0.4);
-      }
-      
-      .dark #notion-article h1:hover, .dark #notion-article h2:hover, .dark #notion-article h3:hover {
-         text-shadow: none;
       }
       
       #notion-article h1::before, 
@@ -740,13 +684,6 @@ export const Style = () => {
           6px 6px 10px rgba(0, 0, 0, 0.15);
       }
       
-      .dark .nier-title {
-        text-shadow: 
-          2px 2px 0 rgba(98, 240, 245, 0.45),
-          4px 4px 0 rgba(98, 240, 245, 0.25),
-          6px 6px 15px rgba(0, 0, 0, 0.6);
-      }
-
       /* ============================================
          3D Button Effects
          ============================================ */
@@ -788,11 +725,6 @@ export const Style = () => {
           8px 0 16px rgba(0, 0, 0, 0.03);
       }
       
-      .dark .endspace-sidebar-3d {
-        box-shadow: 
-          4px 0 8px rgba(0, 0, 0, 0.3),
-          8px 0 16px rgba(0, 0, 0, 0.2);
-      }
       /* ============================================
          NieR: Automata Style Navigation Transition
          ============================================ */
@@ -827,6 +759,28 @@ export const Style = () => {
       .nier-nav-item:hover, .nier-nav-item.active {
         color: var(--endspace-text-primary) !important;
       }
+
+      .endspace-notion-menu-icon {
+        display: inline-block;
+        width: 1.25rem;
+        height: 1.25rem;
+        background-color: currentColor;
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        -webkit-mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+      }
+
+      .endspace-notion-menu-emoji {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 1.5rem;
+        font-size: 1.15rem;
+        line-height: 1;
+      }
       
       /* Hover State: Slide to full width */
       .nier-nav-item:hover::before {
@@ -849,13 +803,6 @@ export const Style = () => {
       
       /* Also update the base hover/active shared rule to use this darker grey */
       
-      .dark .nier-nav-item::before {
-        background: #f4f4f5; /* Light bg in dark mode */
-      }
-      .dark .nier-nav-item:hover, .dark .nier-nav-item.active {
-        color: #fafafa !important; /* Dark text in dark mode */
-      }
-
       /* ============================================
          Endfield Category Button Styles
          ============================================ */

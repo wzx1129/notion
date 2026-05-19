@@ -4,8 +4,8 @@ import { siteConfig } from '@/lib/config'
 import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
 import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
-import NotionIcon from '@/components/NotionIcon'
 import { EndspacePlayer } from './EndspacePlayer'
+import NotionMenuIcon from './NotionMenuIcon'
 import {
   IconBrandX
 } from '@tabler/icons-react'
@@ -140,7 +140,7 @@ export const SideNav = (props) => {
         <span
           className={`inline-flex items-center justify-center transition-all duration-300 ${isActive ? 'scale-110' : ''}`}
         >
-          <NotionIcon icon={item.pageIcon} />
+          <NotionMenuIcon icon={item.pageIcon} />
         </span>
       )
     }

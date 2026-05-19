@@ -4,8 +4,8 @@ import { siteConfig } from '@/lib/config'
 import { handleEmailClick } from '@/lib/plugins/mailEncrypt'
 import { useGlobal } from '@/lib/global'
 import SmartLink from '@/components/SmartLink'
-import NotionIcon from '@/components/NotionIcon'
 import { EndspacePlayer } from './EndspacePlayer'
+import NotionMenuIcon from './NotionMenuIcon'
 import {
   IconMenu2,
   IconX,
@@ -116,7 +116,7 @@ export const MobileNav = (props) => {
     if (item.pageIcon) {
       return (
         <span className="inline-flex items-center justify-center">
-          <NotionIcon icon={item.pageIcon} />
+          <NotionMenuIcon icon={item.pageIcon} />
         </span>
       )
     }
