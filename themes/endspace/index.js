@@ -358,18 +358,30 @@ const LayoutSearch = (props) => {
  * @returns Articles grouped by date
  */
 const LayoutArchive = (props) => {
-  const { archivePosts = {}, categoryOptions = [], tagOptions = [] } = props
+  const { archivePosts = {}, categoryOptions = [], tagOptions = [], postCount } = props
   const archiveTitles = Object.keys(archivePosts)
+  const archivePostCount = archiveTitles.reduce(
+    (count, archiveTitle) => count + (archivePosts[archiveTitle]?.length || 0),
+    0
+  )
+  const totalPostCount = postCount || archivePostCount
   return (
     <>
       <div className="mb-10 pb-20 min-h-screen w-full space-y-12">
         <section className="archive-section">
-          <SearchInput {...props} compact />
+          <SearchInput
+            {...props}
+            compact
+            titleMeta={`${totalPostCount}_ARTICLES_INDEXED`}
+          />
         </section>
 
         <section className="archive-section">
           <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
             <span className="text-5xl font-black">CATEGORIES</span>
+            <span className="endspace-section-meta">
+              // {categoryOptions.length}_CATEGORY_NODES
+            </span>
           </div>
           <div id="archive-category-list" className="flex flex-wrap gap-3">
             {categoryOptions?.map((category) => (
@@ -394,6 +406,9 @@ const LayoutArchive = (props) => {
         <section className="archive-section">
           <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
             <span className="text-5xl font-black">TAGS</span>
+            <span className="endspace-section-meta">
+              // {tagOptions.length}_TAG_MARKERS
+            </span>
           </div>
           <div id="archive-tags-list" className="flex flex-wrap gap-3">
             {tagOptions.map((tag) => (

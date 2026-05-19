@@ -154,10 +154,32 @@ export const Style = () => {
       }
 
       .endspace-section-title {
-        color: var(--endspace-text-muted);
+        color: #E8E8EA;
+        gap: 1rem;
         margin-bottom: 1.5rem;
         padding-bottom: 0.75rem;
         border-bottom: 1px solid var(--endspace-border-base);
+      }
+
+      .endspace-section-meta {
+        color: var(--endspace-text-secondary);
+        font-size: 0.9rem;
+        font-weight: 500;
+        letter-spacing: 0.04em;
+        padding-top: 1.35rem;
+        white-space: nowrap;
+      }
+
+      @media (max-width: 767px) {
+        .endspace-section-title {
+          align-items: flex-start;
+          flex-direction: column;
+          gap: 0.25rem;
+        }
+
+        .endspace-section-meta {
+          padding-top: 0;
+        }
       }
 
       /* ============================================

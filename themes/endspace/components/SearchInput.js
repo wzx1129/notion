@@ -6,7 +6,7 @@ import { IconX } from '@tabler/icons-react'
  * SearchInput Component - Refined Tech Interface
  * Search input component
  */
-export const SearchInput = ({ keyword = '', locale, compact = false }) => {
+export const SearchInput = ({ keyword = '', locale, compact = false, titleMeta = '' }) => {
   const router = useRouter()
   const [searchTerm, setSearchTerm] = useState(keyword || '')
   const [isFocused, setIsFocused] = useState(false)
@@ -32,6 +32,11 @@ export const SearchInput = ({ keyword = '', locale, compact = false }) => {
         {/* Search Label */}
         <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
           <span className="text-5xl font-black">SEARCH</span>
+          {titleMeta && (
+            <span className="endspace-section-meta">
+              // {titleMeta}
+            </span>
+          )}
         </div>
 
         {/* Search Input Container */}
