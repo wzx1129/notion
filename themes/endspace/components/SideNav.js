@@ -224,7 +224,7 @@ export const SideNav = (props) => {
                 className={`nier-nav-item relative h-[3rem] flex items-center cursor-pointer group transition-colors duration-300 hover:bg-[#d4d4d8] ${isActive ? 'active bg-[#d4d4d8]' : ''}`}
               >
                 {/* Icon Container */}
-                <div className="w-[5rem] flex-shrink-0 flex items-center justify-center z-10 text-black">
+                <div className="endspace-menu-icon-wrap w-[5rem] flex-shrink-0 flex items-center justify-center z-10">
                   {renderIcon(item, isActive)}
                 </div>
 

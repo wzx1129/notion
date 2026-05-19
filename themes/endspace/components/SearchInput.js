@@ -30,7 +30,7 @@ export const SearchInput = ({ keyword = '', locale, compact = false, titleMeta =
     <div className={`${compact ? '' : 'endspace-frame p-6'} transition-colors ${isFocused && !compact ? 'border-[var(--endspace-accent-yellow)]' : ''}`}>
       <form onSubmit={handleSearch} className="space-y-4">
         {/* Search Label */}
-        <div className="endspace-section-title flex items-center text-black tech-text tracking-wider">
+        <div className="endspace-section-title flex items-center tech-text tracking-wider">
           <span className="text-5xl font-black">SEARCH</span>
           {titleMeta && (
             <span className="endspace-section-meta">

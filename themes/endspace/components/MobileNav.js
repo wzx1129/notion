@@ -198,7 +198,7 @@ export const MobileNav = (props) => {
                   : 'text-[var(--endspace-text-secondary)] hover:text-black'
               }`}
             >
-              <div className="text-black transition-colors">
+              <div className="endspace-menu-icon-wrap transition-colors">
                  {renderIcon(item)}
               </div>
               <span className="text-xl font-medium">{item.name}</span>

@@ -118,13 +118,18 @@ export const Style = () => {
       }
 
       .endspace-section-title {
-        color: #E8E8EA;
+        color: #E8E8EA !important;
         width: 100%;
         gap: 1rem;
         margin-bottom: 1.5rem;
         padding-bottom: 0.75rem;
-        border-bottom: 1px solid var(--endspace-border-base);
+        border-bottom: 1px solid var(--endspace-border-base) !important;
         justify-content: flex-start;
+      }
+
+      #theme-endspace .endspace-section-title,
+      #theme-endspace .endspace-section-title * {
+        color: #E8E8EA !important;
       }
 
       .endspace-section-meta {
@@ -231,25 +236,45 @@ export const Style = () => {
       #theme-endspace #notion-article,
       #theme-endspace #notion-article .notion,
       #theme-endspace #notion-article .notion-text,
+      #theme-endspace #notion-article .notion-blank,
+      #theme-endspace #notion-article .notion-h,
+      #theme-endspace #notion-article .notion-header,
+      #theme-endspace #notion-article .notion-sub_header,
+      #theme-endspace #notion-article .notion-sub_sub_header,
       #theme-endspace #notion-article .notion-page,
       #theme-endspace #notion-article .notion-list,
+      #theme-endspace #notion-article .notion-list-disc,
+      #theme-endspace #notion-article .notion-list-numbered,
+      #theme-endspace #notion-article .notion-toggle,
       #theme-endspace #notion-article .notion-quote,
       #theme-endspace #notion-article .notion-callout,
       #theme-endspace #notion-article .notion-bookmark,
+      #theme-endspace #notion-article .notion-bookmark-title,
       #theme-endspace #notion-article .notion-collection,
       #theme-endspace #notion-article .notion-collection-row,
-      #theme-endspace #notion-article .notion-property {
+      #theme-endspace #notion-article .notion-property,
+      #theme-endspace #notion-article .notion-property-text,
+      #theme-endspace #notion-article .notion-property-title,
+      #theme-endspace #notion-article .notion-simple-table,
+      #theme-endspace #notion-article .notion-table,
+      #theme-endspace #notion-article .notion-code,
+      #theme-endspace #notion-article .notion-equation {
         color: var(--endspace-text-primary) !important;
       }
 
       #theme-endspace #notion-article p,
       #theme-endspace #notion-article li,
+      #theme-endspace #notion-article span,
       #theme-endspace #notion-article figcaption,
       #theme-endspace #notion-article .notion-text,
       #theme-endspace #notion-article .notion-list,
+      #theme-endspace #notion-article .notion-list-disc,
+      #theme-endspace #notion-article .notion-list-numbered,
+      #theme-endspace #notion-article .notion-toggle,
       #theme-endspace #notion-article .notion-bookmark-description,
       #theme-endspace #notion-article .notion-bookmark-link,
-      #theme-endspace #notion-article .notion-collection-row-body {
+      #theme-endspace #notion-article .notion-collection-row-body,
+      #theme-endspace #notion-article .notion-simple-table-cell {
         color: var(--endspace-text-secondary) !important;
       }
 
@@ -836,6 +861,19 @@ export const Style = () => {
       .nier-nav-item svg, .nier-nav-item .icon-container {
         transition: color 0.3s ease;
         z-index: 2;
+      }
+
+      #theme-endspace .endspace-menu-icon-wrap,
+      #theme-endspace .endspace-menu-icon-wrap i,
+      #theme-endspace .endspace-menu-icon-wrap svg {
+        color: #000 !important;
+        fill: currentColor;
+        stroke: currentColor;
+      }
+
+      #theme-endspace .endspace-menu-icon-wrap .endspace-notion-menu-icon {
+        color: #000 !important;
+        background-color: #000 !important;
       }
       
       /* Removed specific active override to keep consistent grey background */
